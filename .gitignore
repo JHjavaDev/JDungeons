@@ -1,0 +1,6 @@
+hs_err_pid*
+
+.idea/
+out/
+src/com/jhjava/jdungeons/res/audio/music-floor1.wav
+src/com/jhjava/jdungeons/res/audio/music-floor2.wav
