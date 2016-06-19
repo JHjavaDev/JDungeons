@@ -11,10 +11,11 @@ import com.jhjava.jdungeons.engine.render.Renderer;
 import java.util.ArrayList;
 
 public class PlayState extends State {
-	private SoundClip music = new SoundClip("music-floor1.wav");
+	private SoundClip music;
 
-	public PlayState() {
-		name = "play";
+	public PlayState(String name) {
+		this.name = name;
+		music = new SoundClip("music-" + name + ".wav");
 	}
 
 	@Override

@@ -14,7 +14,7 @@ public class GameManager extends AbstractGame {
 
 	@Override
 	public void init(GameContainer gc) {
-		StartState startState = new StartState("floor1", loader);
+		StartState startState = new StartState(new String[]{"floor2", "floor1"}, loader, gc);
 		push(startState);
 	}
 

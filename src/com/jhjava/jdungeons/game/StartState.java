@@ -7,18 +7,20 @@ import com.sun.glass.events.KeyEvent;
 
 public class StartState extends State {
 	private Loader loader;
-	private String firstLevel;
 
-	public StartState(String firstLevel, Loader loader) {
+	public StartState(String[] levels, Loader loader, GameContainer gc) {
 		name = "start";
 		this.loader = loader;
-		this.firstLevel = firstLevel;
+
+		for(int i = 0; i < levels.length; i++) {
+			gc.getGame().push(loader.loadMap(levels[i]));
+		}
 	}
 
 	@Override
 	public void update(GameContainer gc, float delta) {
 		if(gc.getInput().isKeyDown(KeyEvent.VK_SPACE)) {
-			gc.getGame().setState(loader.loadMap(firstLevel));
+			gc.getGame().pop();
 		}
 	}
 

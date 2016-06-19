@@ -13,8 +13,7 @@ public class Loader {
 	}
 
 	public PlayState loadMap(String mapFile) {
-		PlayState result = new PlayState();
-		result.setName(mapFile);
+		PlayState result = new PlayState(mapFile);
 
 		BufferedImage image = null;
 
@@ -37,6 +36,7 @@ public class Loader {
 		ArrayList<Enemy> enemies = new ArrayList<>();
 		ArrayList<Chest> chests = new ArrayList<>();
 		Player player = null;
+		ArrayList<Stair> stairs = new ArrayList<>();
 		ArrayList<Floor> floors = new ArrayList<>();
 
 		for(int x = 0; x < w; x++) {
@@ -56,6 +56,8 @@ public class Loader {
 				} else if (Pixel.getGreenInt(pixels[x + y * w]) == 100) {
 					chests.add(new Chest(x * 32, y * 32));
 					floors.add(new Floor(x * 32, y * 32, "floor"));
+				} else if (Pixel.getGreenInt(pixels[x + y * w]) == 50) {
+					stairs.add(new Stair(x * 32, y * 32, "stair"));
 				}
 			}
 		}
@@ -64,6 +66,11 @@ public class Loader {
 			result.getManager().addObject(floors.get(i));
 		}
 		floors.clear();
+
+		for(int i = 0; i < stairs.size(); i++) {
+			result.getManager().addObject(stairs.get(i));
+		}
+		stairs.clear();
 
 		result.getManager().addObject(player);
 
